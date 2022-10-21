@@ -18,31 +18,34 @@
             </div>
             <div class="select-mode-go d-flex align-items-center">
                 <label><strong>Seleziona la Difficoltà: </strong>&ThickSpace;</label>
-                <div class="select">
-                    <select id="difficulty" class="form-select" aria-label="Default select example">
+                <div class="select d-flex">
+                    <select id="level" class="form-select" name="level">
                         <option value="0" selected >Beginner</option>
                         <option value="1">Intermediate</option>
                         <option value="2">Boss</option>
                     </select>
+                    <button type="button" id="play">Play</button>
                 </div>
             </div>
         </div>
     </header>
     <main>
         <div class="wrapper d-flex align-items-center justify-content-center">
-            <div id="box-container" class="container square-container">
-                <div class="click-to-play w-100 h-100">
+            <div class="container game-wrapper square-container">
+                <h2>seleziona il livello di difficoltà e genera la griglia</h2>
+                <!-- <div class="click-to-play w-100 h-100">
                     <div class="play d-flex  h-100 flex-column align-items-center justify-content-center">
                         <h2>Clicca per iniziare</h2>
                         <div id="start">Play</div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="grid">
-                    <div class="box">
+                    <div class="box box81">
                         <span></span>
                     </div>
                 </div> -->
             </div>
+            <h3 class="end-message"></h3>
         </div>
     </main>
     <footer>
@@ -52,6 +55,6 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro e
  */
 
 const boxContainer = document.getElementById('#box-container');
-const selectLevel = document.getElementById('#difficulty');
+const selectLevel = document.querySelector('#difficulty');
 //QUANTI BOX CI SONO PER ROW
 let boxPerRow = 10;
 const gridLevels = [100, 81, 49];
@@ -25,7 +25,6 @@ start.addEventListener('click', play);
 function play(){
    const boxNumbers = gridLevels[selectLevel.value];
 
-   reset()
 
    generateGrid(boxNumbers);
 };
@@ -47,16 +46,13 @@ function generateBox(boxID, boxNumbers){
     box.classList.add('box' + boxNumbers);
 
     box.boxID = boxID;
-    box.innerHTML = `<span>${boxID}</span>`
+    box.innerHTML = `<span>${boxID}</span>`;
+    return box;
 };
-
-
-function calcCss(){
-    return ` calc(100% / ${boxPerRow})`;
-}
 
 //CREO UNA FUNZIONE CHE PERMETTE DI INTERAGIRE CON I BOX
 function clickBox(){
     this.classList.add('bg-azure');
     console.log(this.innerHTML);
 };
+
