@@ -5,49 +5,51 @@ Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
  */
 
-//SELEZIONO IL CONTAINER
-const grid = document.getElementById('grid');
+const boxContainer = document.getElementById('#box-container');
+const selectLevel = document.getElementById('#difficulty');
 //QUANTI BOX CI SONO PER ROW
 let boxPerRow = 10;
+const gridLevels = [100, 81, 49];
+let bombs = [];
+let score = 0;
 
 
 
-
-document.getElementById('start').addEventListener('click', function(){
-    grid.innerHTML = ''
-    //INIZIO IL "GIOCO"
-    init(boxPerRow);
-});
-
+const start = document.getElementById('start')
+start.addEventListener('click', play);
 
 
 
 
 // CREO LA FUNZIONE CHE INIZIA TUTTO
-function init(nBox){
-    //ELEVO IL NUMERO DI BOX PER RIGA ALLA POTENZA PER CREARE LA GRIGLIA
-    const totalBox = Math.pow(nBox, 2);
-    //GENERO LA GRIGLIA CON UN CICLO FOR
-    for(let i = 0; i < totalBox; i++){
-        squareGenerator(i);
-    };
+function play(){
+   const boxNumbers = gridLevels[selectLevel.value];
+
+   reset()
+
+   generateGrid(boxNumbers);
 };
 
-// CREO LA FUNZIONE CHE GENERA IL BOX
-function squareGenerator(boxID){
-    //CREO IL BOX
+function generateGrid(boxNumbers){
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
+
+    for(let i = 1; i <= boxNumbers; i++){
+        const box = generateBox(i, boxNumbers);
+        grid.append(box);
+    }
+    boxContainer.append(box);
+};
+
+function generateBox(boxID, boxNumbers){
     const box = document.createElement('div');
-    box.className = 'square';
-    //ASSEGNO UN NUMERO AL BOX
-    box.innerHTML = boxID + 1;
+    box.classList.add('box' + boxNumbers);
 
-    box.style.width = calcCss();
-    box.style.height = calcCss();
-    //AGGIUNGO UN' EVENTO AL BOX
-    box.addEventListener('click', clickBox);
-    //LO APPENDO AL CONTAINER
-    grid.append(box);
+    box.boxID = boxID;
+    box.innerHTML = `<span>${boxID}</span>`
 };
+
 
 function calcCss(){
     return ` calc(100% / ${boxPerRow})`;
