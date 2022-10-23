@@ -8,7 +8,7 @@ const playBtn = document.querySelector('#play');
 const levelSelect = document.querySelector('#level');
 
 const gridLevels = [100, 81, 49];
-let bombsNumber = 3;
+let bombsNumber = 16;
 let bombs = [];
 
 let score = 0;
@@ -23,7 +23,6 @@ function play(){
 
     generateGround(boxNumbers);
     bombs = bombGenerator(boxNumbers);
-    console.log(bombs);
 }
 
 function generateGround(boxNumbers){
@@ -55,17 +54,14 @@ function handleClick(){
 
         this.classList.add('clicked');
         score++;
-        console.log(score);
 
         //CREO LA COLLECTION CHE CONTIENE TUTTE LE CELLE
         const boxes = document.getElementsByClassName('box');
         //CREO LA CONDIZIONE DI VITTORIA DEFINITIVA
         if(score === boxes.length - bombsNumber){
-            console.log('HAI VINTO');
             endGame(true)
         }
     }else{
-        console.log('hai perso');
         endGame(false)
     }
 }
